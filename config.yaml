@@ -1,0 +1,55 @@
+robot:
+  # BLE name of the droid's hub; set address to skip scanning (e.g. "AA:BB:CC:DD:EE:FF")
+  name: w32 ControlHub
+  address: null
+  # drive speed 0..1 for forward/backward, and for left/right turns
+  speed: 0.6
+  turn_speed: 0.5
+  # default and maximum seconds per move command
+  move_duration: 1.0
+  max_move_duration: 5.0
+  # set to true if "move forward" drives the robot backward
+  invert_drive: false
+  # watchdog: seconds between link checks; keepalive stop frame after this many idle seconds (0 = off)
+  check_interval: 2.0
+  keepalive: 20.0
+  scan_timeout: 10.0
+
+agent:
+  # realtime voice model: gemini (Gemini Live) or gpt (OpenAI / Azure realtime)
+  realtime: gemini
+  # system prompt; null uses the built-in droid prompt (squeaky/agent.py)
+  prompt: null
+
+camera:
+  # OpenCV (DirectShow) index; on Surface tablets 0 is usually the front camera and 1 the rear camera.
+  # Run "python -m squeaky --list-cameras" to check.
+  index: 1
+  resolution: [1280, 720]
+  show: true
+
+vision:
+  # seconds between position log lines while the robot moves
+  log_interval: 1.0
+  detector:
+    # The white box looks blue-tinted to the camera (auto white balance vs. the warm floor), the floor and its
+    # glare are unsaturated. OpenCV HSV: hue 0-179, saturation 0-255. Click the robot in the camera window to
+    # recalibrate these from its pixels. A hue range with min > max wraps around red.
+    hue_range: [90, 130]
+    saturation_range: [50, 255]
+    # pixels darker than the frame's median brightness + value_offset are ignored (shadows)
+    value_offset: -10
+    # blob size as a fraction of the frame
+    min_area: 0.002
+    max_area: 0.3
+  tracker:
+    smoothing: 0.5
+    lost_after: 0.7
+    # score factor for blobs cut by the frame edge (often window reflections)
+    border_penalty: 0.3
+
+log:
+  # DEBUG shows BLE frames, mic levels and the (unplayed) model speech
+  level: INFO
+  # optional log file in addition to the console
+  file: null

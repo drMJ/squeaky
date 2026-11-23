@@ -1,0 +1,18 @@
+# pip install -r requirements.txt  (into C:\venv\squeaky; plus groc and win_aec, see README.md)
+bleak>=3.1
+# winrt 4.x DLLs have no Smart App Control reputation yet and are blocked on the tablet; 3.2.1 loads
+winrt-runtime==3.2.1
+winrt-Windows.Devices.Bluetooth==3.2.1
+winrt-Windows.Devices.Bluetooth.Advertisement==3.2.1
+winrt-Windows.Devices.Bluetooth.GenericAttributeProfile==3.2.1
+winrt-Windows.Devices.Enumeration==3.2.1
+winrt-Windows.Devices.Radios==3.2.1
+winrt-Windows.Foundation==3.2.1
+winrt-Windows.Foundation.Collections==3.2.1
+winrt-Windows.Storage.Streams==3.2.1
+websocket-client
+httpx
+openai
+pyyaml
+opencv-python
+numpy
